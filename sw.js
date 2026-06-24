@@ -1,9 +1,10 @@
 /* Easy Helper service worker — basic offline caching of the app shell. */
-var CACHE = "easy-helper-v1";
+var CACHE = "easy-helper-v2";
 var ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
+  "./config.js",
   "./app.js",
   "./manifest.webmanifest",
   "./icon.svg"

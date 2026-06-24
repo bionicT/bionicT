@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  // Sensible defaults — a caregiver can change these in Settings.
+  // Built-in fallback defaults.
   var DEFAULTS = {
     callName: "",
     callNumber: "",
@@ -15,15 +15,20 @@
     homeAddress: ""
   };
 
+  // Values a family member set in config.js (loaded before this script).
+  // These act as the starting point; the in-app Settings screen overrides them.
+  var FILE_CONFIG = (typeof window !== "undefined" && window.EASY_HELPER_CONFIG) || {};
+
   var STORAGE_KEY = "easyHelperSettings";
 
   function loadSettings() {
+    var base = Object.assign({}, DEFAULTS, FILE_CONFIG);
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return Object.assign({}, DEFAULTS);
-      return Object.assign({}, DEFAULTS, JSON.parse(raw));
+      if (!raw) return base;
+      return Object.assign(base, JSON.parse(raw));
     } catch (e) {
-      return Object.assign({}, DEFAULTS);
+      return base;
     }
   }
 
