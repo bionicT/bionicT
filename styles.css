@@ -1,0 +1,228 @@
+/* Easy Helper — designed for older adults.
+   Priorities: large touch targets, high contrast, big readable text. */
+
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --header-bg: #1565c0;
+  --header-text: #ffffff;
+
+  --call-bg: #2e7d32;       /* green  */
+  --translate-bg: #1565c0;  /* blue   */
+  --text-bg: #ef6c00;       /* orange */
+  --directions-bg: #6a1b9a; /* purple */
+
+  --focus-ring: #ffd600;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  background: var(--header-bg);
+  color: var(--header-text);
+  padding: 18px 16px;
+  text-align: center;
+}
+
+.app-title {
+  margin: 0;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.app-clock {
+  margin: 6px 0 0;
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+/* ---------- Grid of big buttons ---------- */
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  align-content: stretch;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 38vh;
+  border: none;
+  border-radius: 24px;
+  color: #fff;
+  cursor: pointer;
+  padding: 20px;
+  font-family: inherit;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tile:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tile:focus-visible {
+  outline: 6px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+.tile-icon svg {
+  width: clamp(72px, 18vw, 110px);
+  height: clamp(72px, 18vw, 110px);
+}
+
+.tile-label {
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.tile-call { background: var(--call-bg); }
+.tile-translate { background: var(--translate-bg); }
+.tile-text { background: var(--text-bg); }
+.tile-directions { background: var(--directions-bg); }
+
+/* ---------- Footer / Settings ---------- */
+.app-footer {
+  padding: 12px 16px 20px;
+  text-align: center;
+}
+
+.settings-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid #c5c9cf;
+  border-radius: 14px;
+  padding: 12px 22px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.settings-btn:focus-visible {
+  outline: 4px solid var(--header-bg);
+  outline-offset: 2px;
+}
+
+/* ---------- Settings dialog ---------- */
+.settings-dialog {
+  border: none;
+  border-radius: 18px;
+  padding: 0;
+  width: min(92vw, 480px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.settings-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.settings-form {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-form h2 {
+  margin: 0 0 16px;
+  font-size: 1.8rem;
+}
+
+.settings-form label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 14px 0 6px;
+}
+
+.settings-form input {
+  font-size: 1.2rem;
+  padding: 12px 14px;
+  border: 2px solid #b0b6bd;
+  border-radius: 12px;
+  font-family: inherit;
+}
+
+.settings-form input:focus-visible {
+  outline: 3px solid var(--header-bg);
+  outline-offset: 1px;
+  border-color: var(--header-bg);
+}
+
+.settings-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.settings-actions button {
+  flex: 1;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-save {
+  background: var(--call-bg);
+  color: #fff;
+}
+
+.btn-cancel {
+  background: #e0e0e0;
+  color: var(--text);
+}
+
+/* ---------- Larger phones / tablets ---------- */
+@media (min-width: 700px) {
+  .tile {
+    min-height: 30vh;
+  }
+}
+
+/* ---------- Respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+}

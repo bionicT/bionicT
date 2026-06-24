@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1565c0" />
+  <meta name="description" content="A simple, easy-to-use app with large buttons for calling, translating, texting, and directions." />
+  <title>Easy Helper</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="app-title">Easy Helper</h1>
+    <p class="app-clock" id="clock" aria-live="polite"></p>
+  </header>
+
+  <main class="grid" aria-label="Main actions">
+    <!-- Phone call -->
+    <button class="tile tile-call" type="button" data-action="call">
+      <span class="tile-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="96" height="96" fill="currentColor">
+          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/>
+        </svg>
+      </span>
+      <span class="tile-label">Call</span>
+    </button>
+
+    <!-- Google Translate -->
+    <button class="tile tile-translate" type="button" data-action="translate">
+      <span class="tile-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="96" height="96" fill="currentColor">
+          <path d="M12.87 15.07l-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+        </svg>
+      </span>
+      <span class="tile-label">Translate</span>
+    </button>
+
+    <!-- Text admins -->
+    <button class="tile tile-text" type="button" data-action="text">
+      <span class="tile-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="96" height="96" fill="currentColor">
+          <path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM7 9h10v2H7V9zm6 5H7v-2h6v2zm4-6H7V6h10v2z"/>
+        </svg>
+      </span>
+      <span class="tile-label">Text Help</span>
+    </button>
+
+    <!-- Directions -->
+    <button class="tile tile-directions" type="button" data-action="directions">
+      <span class="tile-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="96" height="96" fill="currentColor">
+          <path d="M21.71 11.29l-9-9a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 0-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/>
+        </svg>
+      </span>
+      <span class="tile-label">Directions</span>
+    </button>
+  </main>
+
+  <footer class="app-footer">
+    <button class="settings-btn" type="button" id="settings-btn" aria-label="Settings">
+      <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true">
+        <path d="M19.14 12.94a7.5 7.5 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.3 7.3 0 0 0-1.62-.94l-.36-2.54a.5.5 0 0 0-.5-.42h-3.84a.5.5 0 0 0-.5.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.61.22L2.7 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.5 7.5 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.32.66.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.04.24.25.42.5.42h3.84c.25 0 .46-.18.5-.42l.36-2.54c.59-.24 1.12-.56 1.62-.94l2.39.96c.24.1.52.02.66-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7z"/>
+      </svg>
+      <span>Settings</span>
+    </button>
+  </footer>
+
+  <!-- Settings dialog -->
+  <dialog class="settings-dialog" id="settings-dialog" aria-label="Settings">
+    <form method="dialog" class="settings-form" id="settings-form">
+      <h2>Settings</h2>
+
+      <label for="call-name">Person to Call — Name</label>
+      <input type="text" id="call-name" name="call-name" placeholder="e.g. Daughter Mary" autocomplete="off" />
+
+      <label for="call-number">Person to Call — Phone Number</label>
+      <input type="tel" id="call-number" name="call-number" placeholder="e.g. 555-123-4567" autocomplete="off" />
+
+      <label for="admin-number">Admin Text Number</label>
+      <input type="tel" id="admin-number" name="admin-number" placeholder="e.g. 555-987-6543" autocomplete="off" />
+
+      <label for="admin-message">Default Text Message</label>
+      <input type="text" id="admin-message" name="admin-message" placeholder="e.g. I need some help, please." autocomplete="off" />
+
+      <label for="home-address">Home Address (for Directions)</label>
+      <input type="text" id="home-address" name="home-address" placeholder="e.g. 123 Main St, Springfield" autocomplete="off" />
+
+      <div class="settings-actions">
+        <button type="submit" class="btn-save">Save</button>
+        <button type="button" class="btn-cancel" id="settings-cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
